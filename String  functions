@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <string.h>
+
+// Function to reverse a string
+void strrev(char* str) {
+    int len = strlen(str);
+    for (int i = 0; i < len / 2; i++) {
+        char temp = str[i];
+        str[i] = str[len - i - 1];
+        str[len - i - 1] = temp;
+    }
+}
+
+int main() {
+    char str1[100], str2[100], str3[200];
+    
+    // Input strings
+    printf("Enter the first string: ");
+    fgets(str1, sizeof(str1), stdin);
+    str1[strcspn(str1, "\n")] = '\0'; // Remove newline character
+    
+    printf("Enter the second string: ");
+    fgets(str2, sizeof(str2), stdin);
+    str2[strcspn(str2, "\n")] = '\0'; // Remove newline character
+
+    // String length
+    printf("\nLength of '%s': %lu", str1, strlen(str1));
+    printf("\nLength of '%s': %lu", str2, strlen(str2));
+
+    // String copy
+    strcpy(str3, str1);
+    printf("\n\nCopied first string into another variable: '%s'", str3);
+
+    // String concatenation
+    strcat(str3, str2);
+    printf("\nConcatenated strings: '%s'", str3);
+
+    // String comparison
+    int cmp = strcmp(str1, str2);
+    if (cmp == 0) {
+        printf("\n\n'%s' and '%s' are equal.", str1, str2);
+    } else if (cmp > 0) {
+        printf("\n\n'%s' is greater than '%s'.", str1, str2);
+    } else {
+        printf("\n\n'%s' is less than '%s'.", str1, str2);
+    }
+
+    // String reversal
+    strrev(str1);
+    printf("\n\nReversed first string: '%s'", str1);
+
+    return 0;
+}
